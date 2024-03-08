@@ -6,12 +6,30 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SignUpView: View {
     @Binding var currentShowingView: String
     
     @State private var email: String = ""
     @State private var password: String = ""
+    
+    func signUp() {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("No email or password found.")
+            return
+        }
+        
+        Task {
+            do {
+                let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
+                print("Success")
+                print(returnedUserData)
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    }
     
     
     private func isValidPassword(_ password: String) -> Bool {
@@ -81,6 +99,24 @@ struct SignUpView: View {
                 .padding()
                 .padding(.bottom, 20)
                 
+                
+                // CREATE NEW ACCOUNT BUTTON
+                Button {
+                    signUp()
+                } label: {
+                    Text("Create New Account")
+                        .foregroundColor(.indigo)
+                        .font(.title3)
+                        .bold()
+                        .frame(width: 229, height:25)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.white))
+                        .padding(.bottom, 30)
+                }
+                
+                // ALREADY HAVE AN ACCOUNT? BUTTON
                 Button(action: {
                     withAnimation {
                         self.currentShowingView = "login"
@@ -89,26 +125,7 @@ struct SignUpView: View {
                     Text("Already have an account?")
                         .bold()
                         .foregroundColor(.white.opacity(0.8))
-                        .padding(.bottom, 50)
                 }
-            
-                
-                GeometryReader { geometry in
-                            Button(action: {
-                                // Button action here
-                            }) {
-                                Text("Create New Account")
-                                    .foregroundColor(.indigo)
-                                    .font(.title3)
-                                    .bold()
-                                    .frame(width: geometry.size.width * 0.6, height:25)
-                                    .padding()
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .fill(Color.white))
-                            }
-                            .frame(width: geometry.size.width)
-                        }
                 
                 Spacer()
             }
