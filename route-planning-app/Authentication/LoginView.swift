@@ -130,7 +130,7 @@ struct LoginView: View {
         }
     }
 }
-#Preview {
-    AuthView()
-}
+//#Preview {
+//    AuthView()
+//}
 

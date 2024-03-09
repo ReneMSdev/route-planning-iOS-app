@@ -54,20 +54,6 @@ struct HomeView: View {
                    coordinate: location4)
             //.tint(.indigo)
         }
-        //        .safeAreaInset(edge: .bottom) {
-        //            HStack {
-        //                Spacer()
-        //                Button {
-        //
-        //                } label: {
-        //                    Text("Button")
-        //                }
-        //                Spacer()
-        //            }
-        //            .padding(.top)
-        //            .background(.thinMaterial)
-        //        }
-        
         .sheet(isPresented: $showingBottomSheet){
             BottomSheetView()
         }
@@ -75,57 +61,98 @@ struct HomeView: View {
 }
 
 struct BottomSheetView: View {
+    @State private var newAddress1 = ""
+    @State private var newAddress2 = ""
+    @State private var newAddress3 = ""
+    @State private var newAddress4 = ""
+    @State private var newAddress5 = ""
+    
     var body: some View {
         ZStack {
-            Color.indigo
+            Color(red: 0.91, green: 0.92, blue: 0.94)
                 .edgesIgnoringSafeArea(.all)
-            VStack{
-                // Drag Indicator
+            
+            VStack {
+                // Custom Drag Indicator
                 RoundedRectangle(cornerRadius: 3)
                     .frame(width: 60, height: 6)
-                    .foregroundColor(.white)
-                    .padding(.top, 15)
+                    .foregroundColor(.indigo)
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
                 
-                Text("Address List")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(.white)
-                    .padding(50)
-                HStack {
-                    Image(systemName: "star")
-                        .foregroundStyle(.white)
-                        .padding()
-                    
-                    Image(systemName: "bell")
-                        .foregroundStyle(.white)
-                        .padding()
-                    
-                    Image(systemName: "globe")
-                        .foregroundStyle(.white)
-                        .padding()
-                    
-                    Image(systemName: "house")
-                        .foregroundStyle(.white)
-                        .padding()
+                // NEED IF STATEMENT TO MAKE THIS DISAPPEAR
+                HStack{
+                    Text("No route selected")
+                        .padding(.bottom, 20)
+                        .font(.title2)
+                        .foregroundStyle(Color.gray)
+                        //.padding(.leading, 20)
+                    //Spacer()
                 }
+                
+                
+                
+//                HStack {
+//                    TextField("New Address", text: $newAddress)
+//                        .textFieldStyle(RoundedBorderTextFieldStyle()) // Gives the text field a rounded border
+//                        .padding(.horizontal) // Adds some spacing around the text field
+//                }
+                ScrollView {
+                    VStack {
+                        AddressTextField(text: $newAddress1, placeholder: "New Address 1")
+                        AddressTextField(text: $newAddress2, placeholder: "New Address 2")
+                        AddressTextField(text: $newAddress3, placeholder: "New Address 3")
+                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
+                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
+                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
+                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
+                    }
+               }
+                .padding(.bottom, 30)
+                
+                // Calculate Route Button
+                Button {
+                    
+                } label: {
+                    Text("Calculate Route")
+                        .foregroundColor(.white)
+                        .font(.title3)
+                        .bold()
+                        .frame(width: 220, height:20)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.indigo))
+                }
+            
+                
                 Spacer()
+                
+                
             }
+            // Sets the size of the BottomSheetView
+            .presentationDetents([.fraction(0.5), .fraction(0.99)])
+            .presentationDragIndicator(.hidden)
+            
         }
-        
-        
+    }
+    
+}
+
+struct AddressTextField: View {
+    @Binding var text: String
+    var placeholder: String
+
+    var body: some View {
+        HStack {
+            TextField(placeholder, text: $text)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+                .padding(.bottom, 5)
+        }
     }
 }
 
-
-//    .sheet(isPresented: $showingBottomSheet), content: {
-//        ZStack(content: {
-//            Color.indigo
-//                .edgesIgnoringSafeArea(.all)
-//            
-//            Text("Address List")
-//                .foregroundStyle(.white)
-//        })
-//    })
 #Preview {
     HomeView()
 }
