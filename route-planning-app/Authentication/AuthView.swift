@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct AuthView: View {
+struct AuthView: View  {
+    //@Binding var isAuthenticated: Bool
+
     @State private var currentViewShowing: String = "login" // login or signup
     var body: some View {
         

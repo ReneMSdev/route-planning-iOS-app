@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    //@State private var isAuthenticated = false
     var body: some View {
         AuthView()
+//        if !isAuthenticated {
+//            LoginView(isAuthenticated: $isAuthenticated, currentShowingView: <#Binding<String>#>)
+//        } else {
+//            HomeView()
+//        }
+//        if isAuthenticated {
+//            HomeView()
+//        } else {
+//            AuthView(isAuthenticated: $isAuthenticated)
+//        }
+        
+        
     }
 }
 

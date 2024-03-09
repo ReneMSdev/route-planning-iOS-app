@@ -10,6 +10,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
+    //@Binding var isAuthenticated: Bool
     @Binding var currentShowingView: String
     
     @State private var email: String = ""
@@ -25,6 +26,7 @@ struct LoginView: View {
             do {
                 let returnedUserData = try await AuthenticationManager.shared.signIn(email: email, password: password)
                 print("Success")
+                //isAuthenticated = true
                 print(returnedUserData)
             } catch {
                 print("Error: \(error)")

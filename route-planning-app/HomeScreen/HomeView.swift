@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @State var showingBottomSheet = true
+    @State private var showingBottomSheet = false
     
     let location = CLLocationCoordinate2D(
         latitude: 13.686252,
@@ -33,34 +33,70 @@ struct HomeView: View {
     
     var body: some View {
         // map contains position parameter for starting camera position
-        Map(position: $camera) {
-            Marker("Temple",
-                   systemImage: "house.fill",
-                   coordinate: location)
-            //.tint(.orange)
+        ZStack(alignment: .bottomLeading){
+            Map(position: $camera) {
+                Marker("Temple",
+                       systemImage: "house.fill",
+                       coordinate: location)
+                Marker("address",
+                       systemImage: "house.fill",
+                       coordinate: location2)
+                Marker("address2",
+                       systemImage: "house.fill",
+                       coordinate: location3)
+                Marker("address3",
+                       systemImage: "house.fill",
+                       coordinate: location4)
+            }
+            VStack{
+                HStack{
+                    // Hamburger Menu Button
+                    Button (action: {
+                        print("hamburger")
+                    }) {
+                        Image(systemName: "line.horizontal.3")
+                            .padding(12)
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.indigo)
+                    }
+                    .padding(20)
+                    Spacer()
+                }
+                
+                Spacer()
+                // Bottom Sheet Toggle Button
+                HStack{
+                    Spacer()
+                    Button(action:{
+                        showingBottomSheet.toggle()
+                    }) {
+                        Image(systemName: "map")
+                            .padding(12)
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .background(Circle().fill(Color.indigo))
+                            .shadow(radius: 10)
+                    }
+                    Spacer()
+                }
+                .padding(30)
+            }
             
-            Marker("address",
-                   systemImage: "house.fill",
-                   coordinate: location2)
-            //.tint(.orange)
-            
-            Marker("address2",
-                   systemImage: "house.fill",
-                   coordinate: location3)
-            //.tint(.orange)
-            
-            Marker("address3",
-                   systemImage: "house.fill",
-                   coordinate: location4)
-            //.tint(.indigo)
-        }
-        .sheet(isPresented: $showingBottomSheet){
-            BottomSheetView()
+            .sheet(isPresented: $showingBottomSheet){
+                BottomSheetView(showingBottomSheet: $showingBottomSheet)
+                // Sets the size of the BottomSheetView
+                    .presentationDetents([.fraction(0.5), .fraction(0.99)])
+                    //.presentationDragIndicator(.hidden)
+            }
         }
     }
 }
 
 struct BottomSheetView: View {
+    
+    @Binding var showingBottomSheet: Bool
+
     @State private var newAddress1 = ""
     @State private var newAddress2 = ""
     @State private var newAddress3 = ""
@@ -73,13 +109,30 @@ struct BottomSheetView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                // Custom Drag Indicator
-                RoundedRectangle(cornerRadius: 3)
-                    .frame(width: 60, height: 6)
-                    .foregroundColor(.indigo)
-                    .padding(.top, 10)
-                    .padding(.bottom, 20)
-                
+                HStack{
+                    Button (action: {
+                        showingBottomSheet.toggle()
+                    }) {
+                        Image(systemName: "xmark")
+                            .padding(6)
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(.white)
+                            .background(Circle().fill(Color.indigo))
+                    }
+                    .padding(5)
+                    
+                    Spacer()
+
+//                    // Custom Drag Indicator
+//                    RoundedRectangle(cornerRadius: 3)
+//                        .frame(width: 60, height: 6)
+//                        .foregroundColor(.indigo)
+//                        .padding(.top, 10)
+//                        .padding(.bottom, 20)
+                    
+                    Spacer()
+                }
                 // NEED IF STATEMENT TO MAKE THIS DISAPPEAR
                 HStack{
                     Text("No route selected")
@@ -124,15 +177,11 @@ struct BottomSheetView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.indigo))
                 }
-            
                 
                 Spacer()
                 
-                
             }
-            // Sets the size of the BottomSheetView
-            .presentationDetents([.fraction(0.5), .fraction(0.99)])
-            .presentationDragIndicator(.hidden)
+            
             
         }
     }
