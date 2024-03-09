@@ -22,6 +22,7 @@
 		CF5DB7E92B9AEBAC00FF61D6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CF5DB7E82B9AEBAC00FF61D6 /* FirebaseFirestore */; };
 		CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7EA2B9AFA4800FF61D6 /* AuthenticationManager.swift */; };
 		CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */; };
+		CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		CF5DB7DA2B9ACBA900FF61D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF5DB7EA2B9AFA4800FF61D6 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusMinusButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		CF5DB7C12B9AC2EC00FF61D6 /* route-planning-app */ = {
 			isa = PBXGroup;
 			children = (
+				CF5DB7EF2B9CB60C00FF61D6 /* Components */,
 				CF5DB7D02B9AC34B00FF61D6 /* Extensions */,
 				CF5DB7EC2B9B2DA500FF61D6 /* HomeScreen */,
 				CF5DB7D12B9AC36B00FF61D6 /* Authentication */,
@@ -118,6 +121,14 @@
 				CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */,
 			);
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		CF5DB7EF2B9CB60C00FF61D6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 				CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */,
 				CF5DB7D52B9AC3E400FF61D6 /* SignUpView.swift in Sources */,
 				CF5DB7D72B9AC41400FF61D6 /* AuthView.swift in Sources */,
+				CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */,
 				CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */,
 				CF5DB7D32B9AC38C00FF61D6 /* LoginView.swift in Sources */,
 				CF5DB7C52B9AC2EC00FF61D6 /* ContentView.swift in Sources */,

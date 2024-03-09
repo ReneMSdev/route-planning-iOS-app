@@ -32,7 +32,9 @@ struct HomeView: View {
     
     
     var body: some View {
-        // map contains position parameter for starting camera position
+    // map contains position parameter for starting camera position
+
+        //ZStack contains markers
         ZStack(alignment: .bottomLeading){
             Map(position: $camera) {
                 Marker("Temple",
@@ -48,6 +50,7 @@ struct HomeView: View {
                        systemImage: "house.fill",
                        coordinate: location4)
             }
+            
             VStack{
                 HStack{
                     // Hamburger Menu Button
@@ -71,8 +74,8 @@ struct HomeView: View {
                     Button(action:{
                         showingBottomSheet.toggle()
                     }) {
-                        Image(systemName: "map")
-                            .padding(12)
+                        Image(systemName: "car.fill")
+                            .padding(15)
                             .font(.largeTitle)
                             .foregroundColor(.white)
                             .background(Circle().fill(Color.indigo))
@@ -86,83 +89,75 @@ struct HomeView: View {
             .sheet(isPresented: $showingBottomSheet){
                 BottomSheetView(showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
-                    .presentationDetents([.fraction(0.5), .fraction(0.99)])
-                    //.presentationDragIndicator(.hidden)
+                    .presentationDetents([
+                        .fraction(0.5),
+                        .fraction(0.6),
+                        .fraction(0.7),
+                        .fraction(0.8),
+                        .fraction(0.9),
+                        .fraction(0.99)])
+                //.presentationDragIndicator(.hidden)
             }
         }
     }
 }
 
+
 struct BottomSheetView: View {
     
     @Binding var showingBottomSheet: Bool
-
-    @State private var newAddress1 = ""
-    @State private var newAddress2 = ""
-    @State private var newAddress3 = ""
-    @State private var newAddress4 = ""
-    @State private var newAddress5 = ""
+    @State private var address = ""
     
     var body: some View {
+
         ZStack {
-            Color(red: 0.91, green: 0.92, blue: 0.94)
-                .edgesIgnoringSafeArea(.all)
-            
             VStack {
                 HStack{
+                    // Exit Button
                     Button (action: {
                         showingBottomSheet.toggle()
                     }) {
-                        Image(systemName: "xmark")
+                        Image(systemName: "x.circle")
                             .padding(6)
-                            .font(.title2)
-                            .bold()
-                            .foregroundColor(.white)
-                            .background(Circle().fill(Color.indigo))
+                            .font(.title)
+                            .foregroundColor(.indigo)
                     }
                     .padding(5)
-                    
-                    Spacer()
-
-//                    // Custom Drag Indicator
-//                    RoundedRectangle(cornerRadius: 3)
-//                        .frame(width: 60, height: 6)
-//                        .foregroundColor(.indigo)
-//                        .padding(.top, 10)
-//                        .padding(.bottom, 20)
                     
                     Spacer()
                 }
                 // NEED IF STATEMENT TO MAKE THIS DISAPPEAR
                 HStack{
                     Text("No route selected")
-                        .padding(.bottom, 20)
+                        //.padding(.bottom, 20)
                         .font(.title2)
                         .foregroundStyle(Color.gray)
                         //.padding(.leading, 20)
                     //Spacer()
                 }
-                
-                
-                
-//                HStack {
-//                    TextField("New Address", text: $newAddress)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle()) // Gives the text field a rounded border
-//                        .padding(.horizontal) // Adds some spacing around the text field
-//                }
+
                 ScrollView {
-                    VStack {
-                        AddressTextField(text: $newAddress1, placeholder: "New Address 1")
-                        AddressTextField(text: $newAddress2, placeholder: "New Address 2")
-                        AddressTextField(text: $newAddress3, placeholder: "New Address 3")
-                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
-                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
-                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
-                        AddressTextField(text: $newAddress4, placeholder: "New Address 4")
+                    NavigationView {
+                        VStack(spacing: 0) {
+                            Form() {
+                                Section(header: Text("Addresses")) {
+                                    AddressTextField(text: $address, placeholder: "Enter Address")
+                                    AddressTextField(text: $address, placeholder: "Enter Address")
+                                    AddressTextField(text: $address, placeholder: "Enter Address")
+                                    AddressTextField(text: $address, placeholder: "Enter Address")
+                                    AddressTextField(text: $address, placeholder: "Enter Address")
+                                }
+                            }
+                            PlusMinusButton()
+                                .padding(.top, -20)
+                        }
+                        .background(Color(.secondarySystemBackground))
+
                     }
+                    .navigationTitle("Route")
                }
                 .padding(.bottom, 30)
-                
+                                
                 // Calculate Route Button
                 Button {
                     
@@ -181,6 +176,7 @@ struct BottomSheetView: View {
                 Spacer()
                 
             }
+            .background(Color(.secondarySystemBackground))
             
             
         }
@@ -195,9 +191,6 @@ struct AddressTextField: View {
     var body: some View {
         HStack {
             TextField(placeholder, text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-                .padding(.bottom, 5)
         }
     }
 }
