@@ -23,6 +23,7 @@
 		CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7EA2B9AFA4800FF61D6 /* AuthenticationManager.swift */; };
 		CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */; };
 		CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */; };
+		CF5DB7F32B9D604C00FF61D6 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		CF5DB7EA2B9AFA4800FF61D6 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusMinusButton.swift; sourceTree = "<group>"; };
+		CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */,
+				CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF5DB7D92B9AC5BB00FF61D6 /* String.swift in Sources */,
+				CF5DB7F32B9D604C00FF61D6 /* BottomSheetView.swift in Sources */,
 				CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */,
 				CF5DB7D52B9AC3E400FF61D6 /* SignUpView.swift in Sources */,
 				CF5DB7D72B9AC41400FF61D6 /* AuthView.swift in Sources */,

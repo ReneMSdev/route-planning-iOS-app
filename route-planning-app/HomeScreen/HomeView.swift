@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @State private var showingBottomSheet = false
+    @State private var showingBottomSheet = true
     
     let location = CLLocationCoordinate2D(
         latitude: 13.686252,
@@ -103,97 +103,7 @@ struct HomeView: View {
 }
 
 
-struct BottomSheetView: View {
-    
-    @Binding var showingBottomSheet: Bool
-    @State private var address = ""
-    
-    var body: some View {
 
-        ZStack {
-            VStack {
-                HStack{
-                    // Exit Button
-                    Button (action: {
-                        showingBottomSheet.toggle()
-                    }) {
-                        Image(systemName: "x.circle")
-                            .padding(6)
-                            .font(.title)
-                            .foregroundColor(.indigo)
-                    }
-                    .padding(5)
-                    
-                    Spacer()
-                }
-                // NEED IF STATEMENT TO MAKE THIS DISAPPEAR
-                HStack{
-                    Text("No route selected")
-                        //.padding(.bottom, 20)
-                        .font(.title2)
-                        .foregroundStyle(Color.gray)
-                        //.padding(.leading, 20)
-                    //Spacer()
-                }
-
-                ScrollView {
-                    NavigationView {
-                        VStack(spacing: 0) {
-                            Form() {
-                                Section(header: Text("Addresses")) {
-                                    AddressTextField(text: $address, placeholder: "Enter Address")
-                                    AddressTextField(text: $address, placeholder: "Enter Address")
-                                    AddressTextField(text: $address, placeholder: "Enter Address")
-                                    AddressTextField(text: $address, placeholder: "Enter Address")
-                                    AddressTextField(text: $address, placeholder: "Enter Address")
-                                }
-                            }
-                            PlusMinusButton()
-                                .padding(.top, -20)
-                        }
-                        .background(Color(.secondarySystemBackground))
-
-                    }
-                    .navigationTitle("Route")
-               }
-                .padding(.bottom, 30)
-                                
-                // Calculate Route Button
-                Button {
-                    
-                } label: {
-                    Text("Calculate Route")
-                        .foregroundColor(.white)
-                        .font(.title3)
-                        .bold()
-                        .frame(width: 220, height:20)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.indigo))
-                }
-                
-                Spacer()
-                
-            }
-            .background(Color(.secondarySystemBackground))
-            
-            
-        }
-    }
-    
-}
-
-struct AddressTextField: View {
-    @Binding var text: String
-    var placeholder: String
-
-    var body: some View {
-        HStack {
-            TextField(placeholder, text: $text)
-        }
-    }
-}
 
 #Preview {
     HomeView()
