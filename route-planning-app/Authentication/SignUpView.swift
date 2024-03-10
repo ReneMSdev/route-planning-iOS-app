@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct SignUpView: View {
+    @Binding var isAuthenticated: Bool
     @Binding var currentShowingView: String
     
     @State private var email: String = ""
@@ -133,5 +134,5 @@ struct SignUpView: View {
     }
 }
 #Preview {
-    AuthView()
+    ContentView()
 }

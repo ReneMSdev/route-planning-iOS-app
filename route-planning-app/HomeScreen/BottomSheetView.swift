@@ -23,7 +23,7 @@ struct BottomSheetView: View {
                     }) {
                         Image(systemName: "x.circle")
                             .padding(6)
-                            .font(.title)
+                            .font(.system(size: 34))
                             .foregroundColor(.indigo)
                     }
                     .padding(5)
@@ -84,10 +84,8 @@ struct BottomSheetView: View {
             }
             .background(Color(.secondarySystemBackground))
             
-            
         }
     }
-    
 }
 
 struct AddressTextField: View {

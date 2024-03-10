@@ -11,13 +11,7 @@ import Firebase
 @main
 struct route_planning_appApp: App {
     // register app delegate for Firebase setup
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-//    init() {
-//        FirebaseApp.configure()
-//        print("Configured Firebase")
-//    }
     
     var body: some Scene {
         WindowGroup {

@@ -10,11 +10,12 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    //@Binding var isAuthenticated: Bool
     @Binding var currentShowingView: String
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @Binding var isAuthenticated: Bool
+    
+    @State private var email: String = "test@test.com"
+    @State private var password: String = "Password1!"
     
     func signIn() {
         guard !email.isEmpty, !password.isEmpty else {
@@ -26,7 +27,9 @@ struct LoginView: View {
             do {
                 let returnedUserData = try await AuthenticationManager.shared.signIn(email: email, password: password)
                 print("Success")
-                //isAuthenticated = true
+                
+                isAuthenticated = true
+                
                 print(returnedUserData)
             } catch {
                 print("Error: \(error)")
@@ -87,8 +90,6 @@ struct LoginView: View {
                             .fontWeight(.bold)
                             .foregroundColor(isValidPassword(password) ? .green : .red)
                     }
-                    
-                    
                 }
                 .padding()
                 .overlay(
@@ -132,7 +133,7 @@ struct LoginView: View {
         }
     }
 }
-//#Preview {
-//    AuthView()
-//}
+#Preview {
+    ContentView()
+}
 

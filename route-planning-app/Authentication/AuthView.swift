@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AuthView: View  {
-    //@Binding var isAuthenticated: Bool
+    @Binding var isAuthenticated: Bool
 
     @State private var currentViewShowing: String = "login" // login or signup
     var body: some View {
         
         if(currentViewShowing == "login") {
-            LoginView(currentShowingView: $currentViewShowing)
+            LoginView(currentShowingView: $currentViewShowing, isAuthenticated: $isAuthenticated)
                 .preferredColorScheme(.light)
         } else {
-            SignUpView(currentShowingView: $currentViewShowing)
+            SignUpView(isAuthenticated: $isAuthenticated, currentShowingView: $currentViewShowing)
                 .preferredColorScheme(.dark)
                 .transition(.move(edge: .bottom))
         }

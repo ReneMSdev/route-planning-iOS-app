@@ -90,20 +90,15 @@ struct HomeView: View {
                 BottomSheetView(showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
                     .presentationDetents([
-                        .fraction(0.5),
                         .fraction(0.6),
                         .fraction(0.7),
                         .fraction(0.8),
                         .fraction(0.9),
                         .fraction(0.99)])
-                //.presentationDragIndicator(.hidden)
             }
         }
     }
 }
-
-
-
 
 #Preview {
     HomeView()
