@@ -26,6 +26,7 @@
 		CF5DB7F32B9D604C00FF61D6 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */; };
 		CFA1BEB82B9DF74B003E0E47 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */; };
 		CFA1BEBA2B9DF838003E0E47 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */; };
+		CFA1BEBC2B9EB9DC003E0E47 /* CustomBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
+		CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			children = (
 				CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */,
 				CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */,
+				CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */,
 				CF5DB7D32B9AC38C00FF61D6 /* LoginView.swift in Sources */,
 				CFA1BEBA2B9DF838003E0E47 /* SideMenuHeaderView.swift in Sources */,
+				CFA1BEBC2B9EB9DC003E0E47 /* CustomBottomSheet.swift in Sources */,
 				CF5DB7C52B9AC2EC00FF61D6 /* ContentView.swift in Sources */,
 				CF5DB7C32B9AC2EC00FF61D6 /* route_planning_appApp.swift in Sources */,
 			);

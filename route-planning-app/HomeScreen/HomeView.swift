@@ -8,9 +8,11 @@
 import SwiftUI
 import MapKit
 
+
 struct HomeView: View {
-    @Binding var showMenu: Bool
+    @State private var showMenu: Bool = false
     @State private var showingBottomSheet: Bool = false
+    @State private var showingCustomBottomSheet: Bool = false
     
     let location = CLLocationCoordinate2D(
         latitude: 13.686252,
@@ -51,41 +53,21 @@ struct HomeView: View {
                        systemImage: "house.fill",
                        coordinate: location4)
             }
+            .zIndex(1)
+
+            // -----------------
+            // MARK: - SIDE MENU
+            // -----------------
             
-            VStack{
-                
-                Spacer()
-                // Bottom Sheet Toggle Button
-                HStack{
-                    Spacer()
-                    Button(action:{
-                        showingBottomSheet.toggle()
-                    }) {
-                        Image(systemName: "car.fill")
-                            .padding(15)
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .background(Circle().fill(Color.indigo))
-                            .shadow(radius: 10)
-                    }
-                    Spacer()
-                }
-                .padding(30)
-            }
-            .sheet(isPresented: $showingBottomSheet){
-                BottomSheetView(showingBottomSheet: $showingBottomSheet)
-                // Sets the size of the BottomSheetView
-                    .presentationDetents([
-                        .fraction(0.6),
-                        .fraction(0.7),
-                        .fraction(0.8),
-                        .fraction(0.9),
-                        .fraction(0.99)])
+            if showMenu {
+                SideMenuView(isShowing: $showMenu)
+                    .transition(.move(edge: .leading))
+                    .zIndex(4)
             }
             
+            // SIDE MENU BUTTON
             VStack {
                 HStack{
-                    // Hamburger Menu Button
                     Button (action: {
                         showMenu.toggle()
                     }) {
@@ -100,10 +82,63 @@ struct HomeView: View {
                 }
                 Spacer()
             }
+            .zIndex(3)
+            
+            // --------------------
+            // MARK: - BOTTOM SHEET
+            // --------------------
+            
+            if showingCustomBottomSheet {
+                Rectangle()
+                    .opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture {showingCustomBottomSheet.toggle()}
+                
+                CustomBottomSheet(isShowing: $showingCustomBottomSheet)
+                    .transition(.move(edge: .bottom))
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    //.background(Color.black.opacity(0.5))
+                    .zIndex(2)
+                    // Semi-transparent background
+                    // You can adjust this modifier to control the size and look of your bottom sheet
+            }
+
+            
+            
+            // BOTTOM SHEET TOGGLE BUTTON
+            VStack{
+                Spacer()
+                HStack{
+                    Spacer()
+                    Button(action:{
+                        showingCustomBottomSheet.toggle()
+                    }) {
+                        Image(systemName: "car.fill")
+                            .padding(15)
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .background(Circle().fill(Color.indigo))
+                            .shadow(radius: 10)
+                    }
+                    Spacer()
+                }
+                .padding(30)
+            }
+            .zIndex(1)
+//            .sheet(isPresented: $showingBottomSheet){
+//                BottomSheetView(showingBottomSheet: $showingBottomSheet)
+//                // Sets the size of the BottomSheetView
+//                    .presentationDetents([
+//                        .fraction(0.6),
+//                        .fraction(0.7),
+//                        .fraction(0.8),
+//                        .fraction(0.9),
+//                        .fraction(0.99)])
+//            }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }

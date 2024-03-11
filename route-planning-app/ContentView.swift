@@ -16,7 +16,7 @@ struct ContentView: View {
             // AuthView & HomeView
             VStack {
                 if isAuthenticated {
-                    HomeView(showMenu: $showMenu)
+                    HomeView()
                 } else {
                     AuthView(isAuthenticated: $isAuthenticated)
                 }

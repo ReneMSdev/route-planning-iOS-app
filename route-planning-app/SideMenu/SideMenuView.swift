@@ -17,7 +17,9 @@ struct SideMenuView: View {
                 Rectangle()
                     .opacity(0.3)
                     .ignoresSafeArea()
-                    .onTapGesture {isShowing.toggle()}
+                    .onTapGesture {
+                        isShowing.toggle()
+                    }
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 32) {
@@ -28,7 +30,6 @@ struct SideMenuView: View {
                     .padding()
                     .frame(width: 270, alignment: .leading)
                     .background(.white)
-                    
                     Spacer()
                 }
             }
@@ -36,6 +37,6 @@ struct SideMenuView: View {
     }
 }
 
-#Preview {
-    SideMenuView(isShowing: .constant(true))
-}
+//#Preview {
+//    SideMenuView(isShowing: .constant(false))
+//}
