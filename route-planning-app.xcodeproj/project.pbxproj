@@ -27,6 +27,7 @@
 		CFA1BEB82B9DF74B003E0E47 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */; };
 		CFA1BEBA2B9DF838003E0E47 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */; };
 		CFA1BEBC2B9EB9DC003E0E47 /* CustomBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */; };
+		CFA1BEBE2B9EF7D6003E0E47 /* BottomSheetContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEBD2B9EF7D6003E0E47 /* BottomSheetContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheet.swift; sourceTree = "<group>"; };
+		CFA1BEBD2B9EF7D6003E0E47 /* BottomSheetContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */,
 				CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */,
 				CFA1BEBB2B9EB9DC003E0E47 /* CustomBottomSheet.swift */,
+				CFA1BEBD2B9EF7D6003E0E47 /* BottomSheetContentView.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */,
 				CF5DB7D52B9AC3E400FF61D6 /* SignUpView.swift in Sources */,
 				CFA1BEB82B9DF74B003E0E47 /* SideMenuView.swift in Sources */,
+				CFA1BEBE2B9EF7D6003E0E47 /* BottomSheetContentView.swift in Sources */,
 				CF5DB7D72B9AC41400FF61D6 /* AuthView.swift in Sources */,
 				CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */,
 				CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */,

@@ -13,9 +13,7 @@ struct CustomBottomSheet: View {
     @State private var positionOffset: CGFloat = 0
     
     // Constants for the draggable states
-    private let minHeightFactor: CGFloat = 0.3
-    private let initialHeightFactor: CGFloat = 0.5
-    private let maxHeightFactor: CGFloat = 0.9
+    private let snapRatios: [CGFloat] = [0.3,0.4,0.5,0.6,0.7,0.8,0.9]
     
     
     var body: some View {
@@ -24,7 +22,7 @@ struct CustomBottomSheet: View {
                 // Click off toggle feature
                 Rectangle()
                     // makes background "invisable"
-                    .opacity(0.0001)
+                    .opacity(0.1)
                     .ignoresSafeArea()
                     .onTapGesture {
                         isShowing.toggle()
@@ -32,14 +30,14 @@ struct CustomBottomSheet: View {
                 
                 VStack() {
                     Spacer()
-                    BottomSheetContentView()
+                    BottomSheetContentView(isShowing: $isShowing)
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height * maxHeightFactor, alignment: .top)
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
                 .offset(y: max(self.positionOffset + self.dragState.translation.height, 0))
                 .gesture(dragGesture(geometry: geometry))
                 .ignoresSafeArea()
                 .onAppear {
-                    self.positionOffset = geometry.size.height * (1 - self.initialHeightFactor)
+                    self.positionOffset = geometry.size.height * (1 - 0.6)
                 }
             }
         }
@@ -51,17 +49,17 @@ struct CustomBottomSheet: View {
                 state = .dragging(translation: drag.translation)
             }
             .onEnded { value in
-                let verticalMovement = value.translation.height
                 let screenHeight = geometry.size.height
-                let newPositionOffset = self.positionOffset + verticalMovement
+                // Temporary offset to simulate movement with the drag
+                let tempOffset = positionOffset + value.translation.height
                 
-                // Snap to the closest height factor
-                if newPositionOffset < screenHeight * (1 - self.maxHeightFactor) {
-                    self.positionOffset = screenHeight * (1 - self.maxHeightFactor) // Expanded
-                } else if newPositionOffset > screenHeight * (1 - self.minHeightFactor) {
-                    self.positionOffset = screenHeight * (1 - self.minHeightFactor) // Collapsed
-                } else {
-                    self.positionOffset = screenHeight * (1 - self.initialHeightFactor) // Initial
+                // Determine the final position based on the drag ending point
+                let finalRatio = max(0, min(1, 1 - tempOffset / screenHeight))
+                let nearestRatio = snapRatios.min(by: { abs($0 - finalRatio) < abs($1 - finalRatio) }) ?? 0.6
+                
+                // Animate to the nearest snap point from the current position
+                withAnimation(.easeOut) {
+                    positionOffset = screenHeight * (1 - nearestRatio)
                 }
             }
     }
@@ -89,29 +87,6 @@ struct CustomBottomSheet: View {
         }
     }
 }
-
-struct BottomSheetContentView: View {
-    var body: some View {
-        ZStack {
-            Spacer()
-            VStack {
-                // Handle Indicator
-                RoundedRectangle(cornerRadius: 5)
-                    .frame(width: 40, height: 5)
-                    .padding(.top, 5)
-                    .foregroundStyle(Color(.systemGray))
-                
-                Text("Bottom Sheet Content")
-                Spacer()
-            }
-            .frame(maxWidth: .infinity)
-            .background(Color.teal)
-            .clipShape(RoundedCorner(radius: 20, corners: [.topLeft, .topRight]))
-            .ignoresSafeArea(edges: .bottom)
-        }
-    }
-}
-
 
 // Shape for top edge
 struct RoundedCorner: Shape {
