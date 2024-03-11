@@ -5,6 +5,8 @@
 //  Created by Rene Salomone on 3/11/24.
 //
 
+// NOTE : THE EXIT BUTTON AND DIVIDER ARE NOW UNDER NEATH ABOVE THE CALCULATE BUTTON
+
 import SwiftUI
 
 struct CustomBottomSheet: View {
@@ -13,32 +15,59 @@ struct CustomBottomSheet: View {
     @State private var positionOffset: CGFloat = 0
     
     // Constants for the draggable states
-    private let snapRatios: [CGFloat] = [0.3,0.4,0.5,0.6,0.7,0.8,0.9]
-    
+    private let snapRatios: [CGFloat] = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     
     var body: some View {
         GeometryReader { geometry in
             if isShowing {
-                // Click off toggle feature
-                Rectangle()
-                    // makes background "invisable"
-                    .opacity(0.1)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        isShowing.toggle()
-                    }
-                
-                VStack() {
-                    Spacer()
+                VStack(alignment: .trailing) {
+                    // Making the background "invisible" to clicks
+                    // This layer captures taps outside the bottom sheet to dismiss it
+                    Rectangle()
+                        .opacity(0.0001)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                isShowing.toggle()
+                            }
+                        }
+                    
+                    // Bottom sheet content
                     BottomSheetContentView(isShowing: $isShowing)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.9) // Adjust the height as needed
+                        .background(Color.white)
+                        .clipShape(RoundedCorner(radius: 20, corners: [.topLeft, .topRight]))
+                        .offset(y: max(self.positionOffset + self.dragState.translation.height, 0))
+                        .gesture(dragGesture(geometry: geometry))
+                        .onAppear {
+                            self.positionOffset = geometry.size.height * (1 - 0.6) // Initial position
+                        }
+                    
+                    //Sticky bottom content
+                    VStack {
+                        Divider()
+                            .background(Color.indigo)
+                            .opacity(0.3)
+                            .padding(.horizontal, 20)
+                        PlusMinusButton()
+                            .padding(.vertical, 10)
+                        Button(action: {
+                            // Action for Calculate Route
+                        }) {
+                            Text("Calculate Route")
+                                .foregroundColor(.white)
+                                .font(.title3)
+                                .bold()
+                                .frame(maxWidth: 270)
+                                .padding()
+                                .background(Color.indigo)
+                                .cornerRadius(20)
+                        }
+                    }
+                    .background(Color(.secondarySystemBackground))
                 }
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
-                .offset(y: max(self.positionOffset + self.dragState.translation.height, 0))
-                .gesture(dragGesture(geometry: geometry))
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
                 .ignoresSafeArea()
-                .onAppear {
-                    self.positionOffset = geometry.size.height * (1 - 0.6)
-                }
             }
         }
     }
@@ -50,16 +79,12 @@ struct CustomBottomSheet: View {
             }
             .onEnded { value in
                 let screenHeight = geometry.size.height
-                // Temporary offset to simulate movement with the drag
                 let tempOffset = positionOffset + value.translation.height
-                
-                // Determine the final position based on the drag ending point
                 let finalRatio = max(0, min(1, 1 - tempOffset / screenHeight))
                 let nearestRatio = snapRatios.min(by: { abs($0 - finalRatio) < abs($1 - finalRatio) }) ?? 0.6
                 
-                // Animate to the nearest snap point from the current position
                 withAnimation(.easeOut) {
-                    positionOffset = screenHeight * (1 - nearestRatio)
+                    positionOffset = screenHeight * (1 - nearestRatio) // Animate to the nearest snap point
                 }
             }
     }
@@ -87,6 +112,9 @@ struct CustomBottomSheet: View {
         }
     }
 }
+
+// Don't forget to define the RoundedCorner struct if it's not already defined elsewhere in your code.
+
 
 // Shape for top edge
 struct RoundedCorner: Shape {
