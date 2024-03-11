@@ -24,6 +24,8 @@
 		CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */; };
 		CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */; };
 		CF5DB7F32B9D604C00FF61D6 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */; };
+		CFA1BEB82B9DF74B003E0E47 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */; };
+		CFA1BEBA2B9DF838003E0E47 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		CF5DB7ED2B9B2DE600FF61D6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusMinusButton.swift; sourceTree = "<group>"; };
 		CF5DB7F22B9D604C00FF61D6 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		CF5DB7C12B9AC2EC00FF61D6 /* route-planning-app */ = {
 			isa = PBXGroup;
 			children = (
+				CFA1BEB62B9DF73A003E0E47 /* SideMenu */,
 				CF5DB7EF2B9CB60C00FF61D6 /* Components */,
 				CF5DB7D02B9AC34B00FF61D6 /* Extensions */,
 				CF5DB7EC2B9B2DA500FF61D6 /* HomeScreen */,
@@ -132,6 +137,15 @@
 				CF5DB7F02B9CB62B00FF61D6 /* PlusMinusButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CFA1BEB62B9DF73A003E0E47 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				CFA1BEB72B9DF74B003E0E47 /* SideMenuView.swift */,
+				CFA1BEB92B9DF838003E0E47 /* SideMenuHeaderView.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,10 +232,12 @@
 				CF5DB7F32B9D604C00FF61D6 /* BottomSheetView.swift in Sources */,
 				CF5DB7EB2B9AFA4900FF61D6 /* AuthenticationManager.swift in Sources */,
 				CF5DB7D52B9AC3E400FF61D6 /* SignUpView.swift in Sources */,
+				CFA1BEB82B9DF74B003E0E47 /* SideMenuView.swift in Sources */,
 				CF5DB7D72B9AC41400FF61D6 /* AuthView.swift in Sources */,
 				CF5DB7F12B9CB62B00FF61D6 /* PlusMinusButton.swift in Sources */,
 				CF5DB7EE2B9B2DE600FF61D6 /* HomeView.swift in Sources */,
 				CF5DB7D32B9AC38C00FF61D6 /* LoginView.swift in Sources */,
+				CFA1BEBA2B9DF838003E0E47 /* SideMenuHeaderView.swift in Sources */,
 				CF5DB7C52B9AC2EC00FF61D6 /* ContentView.swift in Sources */,
 				CF5DB7C32B9AC2EC00FF61D6 /* route_planning_appApp.swift in Sources */,
 			);

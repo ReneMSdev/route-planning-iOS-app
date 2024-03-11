@@ -17,6 +17,7 @@ struct BottomSheetView: View {
         ZStack {
             VStack {
                 HStack{
+                    Spacer()
                     // Exit Button
                     Button (action: {
                         showingBottomSheet.toggle()
@@ -28,7 +29,6 @@ struct BottomSheetView: View {
                     }
                     .padding(5)
                     
-                    Spacer()
                 }
                 // NEED IF STATEMENT TO MAKE THIS DISAPPEAR
                 // function to change text to routeName or default to ""
@@ -100,5 +100,5 @@ struct AddressTextField: View {
 }
 
 #Preview {
-    HomeView()
+    ContentView()
 }

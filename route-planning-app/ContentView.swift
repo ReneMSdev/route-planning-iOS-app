@@ -9,14 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isAuthenticated: Bool = false
+    @State public var showMenu: Bool = false
     
     var body: some View {
-        VStack {
-            if isAuthenticated {
-                HomeView()
-            } else {
-                AuthView(isAuthenticated: $isAuthenticated)
+        ZStack {
+            // AuthView & HomeView
+            VStack {
+                if isAuthenticated {
+                    HomeView(showMenu: $showMenu)
+                } else {
+                    AuthView(isAuthenticated: $isAuthenticated)
+                }
             }
+            
+            SideMenuView(isShowing: $showMenu)
         }
     }
 }

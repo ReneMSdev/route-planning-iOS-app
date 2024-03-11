@@ -9,7 +9,8 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @State private var showingBottomSheet = true
+    @Binding var showMenu: Bool
+    @State private var showingBottomSheet: Bool = false
     
     let location = CLLocationCoordinate2D(
         latitude: 13.686252,
@@ -55,7 +56,7 @@ struct HomeView: View {
                 HStack{
                     // Hamburger Menu Button
                     Button (action: {
-                        print("hamburger")
+                        showMenu.toggle()
                     }) {
                         Image(systemName: "line.horizontal.3")
                             .padding(12)
@@ -101,5 +102,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    ContentView()
 }
