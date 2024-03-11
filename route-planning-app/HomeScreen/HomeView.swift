@@ -53,20 +53,6 @@ struct HomeView: View {
             }
             
             VStack{
-                HStack{
-                    // Hamburger Menu Button
-                    Button (action: {
-                        showMenu.toggle()
-                    }) {
-                        Image(systemName: "line.horizontal.3")
-                            .padding(12)
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.indigo)
-                    }
-                    .padding(20)
-                    Spacer()
-                }
                 
                 Spacer()
                 // Bottom Sheet Toggle Button
@@ -86,7 +72,6 @@ struct HomeView: View {
                 }
                 .padding(30)
             }
-            
             .sheet(isPresented: $showingBottomSheet){
                 BottomSheetView(showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
@@ -96,6 +81,24 @@ struct HomeView: View {
                         .fraction(0.8),
                         .fraction(0.9),
                         .fraction(0.99)])
+            }
+            
+            VStack {
+                HStack{
+                    // Hamburger Menu Button
+                    Button (action: {
+                        showMenu.toggle()
+                    }) {
+                        Image(systemName: "line.horizontal.3")
+                            .padding(12)
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.indigo)
+                    }
+                    .padding(20)
+                    Spacer()
+                }
+                Spacer()
             }
         }
     }
