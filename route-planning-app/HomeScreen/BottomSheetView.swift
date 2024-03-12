@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BottomSheetView: View {
+
     @Binding var showMenu: Bool
     @Binding var showingBottomSheet: Bool
     @State private var address = ""
@@ -84,7 +85,6 @@ struct BottomSheetView: View {
                 
             }
             .background(Color(.secondarySystemBackground))
-            
         }
     }
 }
