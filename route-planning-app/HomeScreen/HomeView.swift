@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
+    @Binding var selectedTab: Int
+    
     @State private var showMenu = false
     @State private var showingBottomSheet = false
     
@@ -108,7 +110,7 @@ struct HomeView: View {
                 }
                 
                 // SIDE MENU VIEW
-                SideMenuView(isShowing: $showMenu)
+                SideMenuView(isShowing: $showMenu, selectedTab: $selectedTab)
             }
             .zIndex(3)
         }
@@ -116,5 +118,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    ContentView()
 }
