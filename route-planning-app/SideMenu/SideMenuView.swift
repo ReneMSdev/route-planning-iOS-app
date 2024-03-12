@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
+    @Binding var selectedTab: Int
+    @Binding var showingBottomSheet: Bool
+    @State private var selectedOption: SideMenuOptionModel?
     
     var body: some View {
         ZStack{
@@ -23,19 +26,51 @@ struct SideMenuView: View {
                     VStack(alignment: .leading, spacing: 32) {
                         SideMenuHeaderView()
                         
+                        // Buttons
+                        VStack {
+                            ForEach(SideMenuOptionModel.allCases) {option in
+                                Button {
+                                    if option == .planRoute {
+                                        // dismiss side menu
+                                        isShowing = false
+                                        
+                                        // delay the presentation of bottom sheet
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                            showingBottomSheet = true
+                                            selectedOption = .planRoute
+                                            selectedTab = 0
+                                        }
+                                    } else {
+                                        onOptionTapped(option)
+                                    }
+                                    //onOptionTapped(option)
+                                } label: {
+                                    SideMenuRowView(option: option, selectedOption: $selectedOption)
+                                }
+                            }
+                        }
+                        
                         Spacer()
                     }
                     .padding()
                     .frame(width: 270, alignment: .leading)
-                    .background(.white)
+                    .background(Color(.secondarySystemBackground))
                     
                     Spacer()
                 }
+                .transition(.move(edge: .leading))
             }
         }
+        .animation(.easeInOut, value: isShowing)
+    }
+    
+    private func onOptionTapped(_ option: SideMenuOptionModel) {
+        selectedOption = option
+        selectedTab = option.rawValue
+        isShowing = false
     }
 }
 
 #Preview {
-    SideMenuView(isShowing: .constant(true))
+    ContentView()
 }
