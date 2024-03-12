@@ -31,11 +31,15 @@ struct SideMenuView: View {
                             ForEach(SideMenuOptionModel.allCases) {option in
                                 Button {
                                     if option == .planRoute {
-                                        selectedOption = .planRoute
-                                        selectedTab = 1
+                                        // dismiss side menu
                                         isShowing = false
-                                        //dismiss side menu
-                                        showingBottomSheet.toggle()
+                                        
+                                        // delay the presentation of bottom sheet
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                            showingBottomSheet = true
+                                            selectedOption = .planRoute
+                                            selectedTab = 0
+                                        }
                                     } else {
                                         onOptionTapped(option)
                                     }

@@ -10,7 +10,6 @@ import MapKit
 
 struct HomeView: View {
     @Binding var selectedTab: Int
-    
     @State private var showMenu = false
     @State private var showingBottomSheet = false
     
@@ -81,9 +80,11 @@ struct HomeView: View {
             
             // PRESENTS BOTTOM SHEET VIEW
             //  this works below
-//            .onAppear{
-//                checkTabAndSelectBottomSheet()
-//            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.showingBottomSheet = true
+                }
+            }
             .sheet(isPresented: $showingBottomSheet){
                 BottomSheetView(showMenu: $showMenu, showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
@@ -121,11 +122,6 @@ struct HomeView: View {
             .zIndex(3)
         }
         
-    }
-    private func checkTabAndSelectBottomSheet() {
-        if selectedTab == 1 {
-            showingBottomSheet = true
-        }
     }
 }
 

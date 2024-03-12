@@ -21,13 +21,11 @@ struct ContentView: View {
                 case 0:
                     HomeView(selectedTab: $selectedTab)
                 case 1:
-                    HomeView(selectedTab: $selectedTab)
-                case 2:
                     Text("Favorites")
-                case 3:
+                case 2:
                     Text("Profile")
-//                case 4:
-//                    Text("Notifications")
+                case 3:
+                    Text("Notifications")
                 default:
                     HomeView(selectedTab: $selectedTab)
                 }
