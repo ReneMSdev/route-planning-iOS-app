@@ -15,7 +15,7 @@ struct SideMenuView: View {
             if isShowing {
                 // Gray Background
                 Rectangle()
-                    .opacity(0.3)
+                    .opacity(0.2)
                     .ignoresSafeArea()
                     .onTapGesture {isShowing.toggle()}
                 

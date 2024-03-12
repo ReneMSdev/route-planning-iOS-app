@@ -9,8 +9,8 @@ import SwiftUI
 import MapKit
 
 struct HomeView: View {
-    @Binding var showMenu: Bool
-    @State private var showingBottomSheet: Bool = false
+    @State private var showMenu = false
+    @State private var showingBottomSheet = false
     
     let location = CLLocationCoordinate2D(
         latitude: 13.686252,
@@ -35,60 +35,49 @@ struct HomeView: View {
     var body: some View {
     // map contains position parameter for starting camera position
 
-        //ZStack contains markers
-        ZStack(alignment: .bottomLeading){
-            Map(position: $camera) {
-                Marker("Temple",
-                       systemImage: "house.fill",
-                       coordinate: location)
-                Marker("address",
-                       systemImage: "house.fill",
-                       coordinate: location2)
-                Marker("address2",
-                       systemImage: "house.fill",
-                       coordinate: location3)
-                Marker("address3",
-                       systemImage: "house.fill",
-                       coordinate: location4)
-            }
-            
-            VStack{
-                HStack{
-                    // Hamburger Menu Button
-                    Button (action: {
-                        showMenu.toggle()
-                    }) {
-                        Image(systemName: "line.horizontal.3")
-                            .padding(12)
-                            .font(.largeTitle)
-                            .bold()
-                            .foregroundColor(.indigo)
-                    }
-                    .padding(20)
-                    Spacer()
+        //ZStack for HOME SCREEN
+        ZStack{
+            // CONTAINS MAP, BOTTOM SHEET & BUTTON
+            ZStack{
+                Map(position: $camera) {
+                    Marker("Temple",
+                           systemImage: "house.fill",
+                           coordinate: location)
+                    Marker("address",
+                           systemImage: "house.fill",
+                           coordinate: location2)
+                    Marker("address2",
+                           systemImage: "house.fill",
+                           coordinate: location3)
+                    Marker("address3",
+                           systemImage: "house.fill",
+                           coordinate: location4)
                 }
                 
-                Spacer()
-                // Bottom Sheet Toggle Button
-                HStack{
+                // BOTTOM SHEET BUTTON
+                VStack {
                     Spacer()
-                    Button(action:{
-                        showingBottomSheet.toggle()
-                    }) {
-                        Image(systemName: "car.fill")
-                            .padding(15)
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .background(Circle().fill(Color.indigo))
-                            .shadow(radius: 10)
+                    // Bottom Sheet Toggle Button
+                    HStack{
+                        Spacer()
+                        Button(action:{
+                            showingBottomSheet.toggle()
+                        }) {
+                            Image(systemName: "car.fill")
+                                .padding(15)
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                                .background(Circle().fill(Color.indigo))
+                                .shadow(radius: 10)
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    .padding(30)
                 }
-                .padding(30)
-            }
-            
+            } // END OF ZSTACK
+            // PRESENTS BOTTOM SHEET VIEW
             .sheet(isPresented: $showingBottomSheet){
-                BottomSheetView(showingBottomSheet: $showingBottomSheet)
+                BottomSheetView(showMenu: $showMenu, showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
                     .presentationDetents([
                         .fraction(0.6),
@@ -97,10 +86,35 @@ struct HomeView: View {
                         .fraction(0.9),
                         .fraction(0.99)])
             }
+            .zIndex(2)
+            
+            ZStack{
+                // SIDE MENU BUTTON
+                VStack{
+                    HStack{
+                        Button (action: {
+                            showMenu.toggle()
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .padding(12)
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.indigo)
+                        }
+                        .padding(20)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                
+                // SIDE MENU VIEW
+                SideMenuView(isShowing: $showMenu)
+            }
+            .zIndex(3)
         }
     }
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
