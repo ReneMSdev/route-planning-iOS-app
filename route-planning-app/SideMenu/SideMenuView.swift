@@ -10,6 +10,7 @@ import SwiftUI
 struct SideMenuView: View {
     @Binding var isShowing: Bool
     @Binding var selectedTab: Int
+    @Binding var showingBottomSheet: Bool
     @State private var selectedOption: SideMenuOptionModel?
     
     var body: some View {
@@ -29,7 +30,16 @@ struct SideMenuView: View {
                         VStack {
                             ForEach(SideMenuOptionModel.allCases) {option in
                                 Button {
-                                    onOptionTapped(option)
+                                    if option == .planRoute {
+                                        selectedOption = .planRoute
+                                        selectedTab = 1
+                                        isShowing = false
+                                        //dismiss side menu
+                                        showingBottomSheet.toggle()
+                                    } else {
+                                        onOptionTapped(option)
+                                    }
+                                    //onOptionTapped(option)
                                 } label: {
                                     SideMenuRowView(option: option, selectedOption: $selectedOption)
                                 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingBottomSheet = false
     @State private var isAuthenticated: Bool = false
     @State public var showMenu: Bool = false
     @State private var selectedTab = 0
@@ -16,24 +17,22 @@ struct ContentView: View {
         
         ZStack {
             if isAuthenticated {
-                TabView(selection: $selectedTab){
+                switch selectedTab {
+                case 0:
                     HomeView(selectedTab: $selectedTab)
-                        .tag(0)
-                    
-                    Text("Plan Routes")
-                        .tag(1)
-                    
+                case 1:
+                    HomeView(selectedTab: $selectedTab)
+                case 2:
                     Text("Favorites")
-                        .tag(2)
-                    
+                case 3:
                     Text("Profile")
-                        .tag(3)
-                    
-                    Text("Notifications")
-                        .tag(4)
+//                case 4:
+//                    Text("Notifications")
+                default:
+                    HomeView(selectedTab: $selectedTab)
                 }
                 // Side Menu
-                SideMenuView(isShowing: $showMenu, selectedTab: $selectedTab)
+                SideMenuView(isShowing: $showMenu, selectedTab: $selectedTab, showingBottomSheet: $showingBottomSheet)
             } else {
                 AuthView(isAuthenticated: $isAuthenticated)
             }

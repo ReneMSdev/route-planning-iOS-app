@@ -8,21 +8,21 @@
 import Foundation
 
 enum SideMenuOptionModel: Int, CaseIterable {
-    case dashboard
-    case performance
+    case map
+    case planRoute
     case profile
-    case search
+    case favorites
     case notifictions
     
     var title: String {
         switch self {
-        case .dashboard:
+        case .map:
             return "Map"
-        case .performance:
+        case .planRoute:
             return "Plan Route"
-        case .profile:
+        case .favorites:
             return "Favorites"
-        case .search:
+        case .profile:
             return "Profile"
         case .notifictions:
             return "Notifications"
@@ -31,13 +31,13 @@ enum SideMenuOptionModel: Int, CaseIterable {
     
     var systemImageName: String {
         switch self {
-        case .dashboard:
+        case .map:
             return "map"
-        case .performance:
+        case .planRoute:
             return "car"
-        case .profile:
+        case .favorites:
             return "heart"
-        case .search:
+        case .profile:
             return "person"
         case .notifictions:
             return "bell"

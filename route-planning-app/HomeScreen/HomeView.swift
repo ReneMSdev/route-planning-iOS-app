@@ -55,6 +55,7 @@ struct HomeView: View {
                            systemImage: "house.fill",
                            coordinate: location4)
                 }
+            
                 
                 // BOTTOM SHEET BUTTON
                 VStack {
@@ -77,7 +78,12 @@ struct HomeView: View {
                     .padding(30)
                 }
             } // END OF ZSTACK
+            
             // PRESENTS BOTTOM SHEET VIEW
+            //  this works below
+//            .onAppear{
+//                checkTabAndSelectBottomSheet()
+//            }
             .sheet(isPresented: $showingBottomSheet){
                 BottomSheetView(showMenu: $showMenu, showingBottomSheet: $showingBottomSheet)
                 // Sets the size of the BottomSheetView
@@ -110,9 +116,15 @@ struct HomeView: View {
                 }
                 
                 // SIDE MENU VIEW
-                SideMenuView(isShowing: $showMenu, selectedTab: $selectedTab)
+                SideMenuView(isShowing: $showMenu, selectedTab: $selectedTab, showingBottomSheet: $showingBottomSheet)
             }
             .zIndex(3)
+        }
+        
+    }
+    private func checkTabAndSelectBottomSheet() {
+        if selectedTab == 1 {
+            showingBottomSheet = true
         }
     }
 }
