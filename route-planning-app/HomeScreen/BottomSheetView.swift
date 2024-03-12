@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BottomSheetView: View {
+
+    @Binding var showMenu: Bool
     @Binding var showingBottomSheet: Bool
     @State private var address = ""
     
@@ -35,6 +37,7 @@ struct BottomSheetView: View {
                     .font(.title2)
                     .foregroundStyle(Color.gray)
 
+                // Contains addresses
                 ScrollView {
                     NavigationView {
                         Form() {
@@ -98,5 +101,5 @@ struct AddressTextField: View {
 }
 
 #Preview {
-    ContentView()
+    HomeView()
 }
